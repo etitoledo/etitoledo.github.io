@@ -4,4 +4,4 @@ Disallow: /manage.html
 Disallow: /tools/
 Disallow: /supabase/
 Disallow: /cloud/
-# כשתהיה כתובת לאתר, תתווסף כאן שורת Sitemap
+Sitemap: https://etitoledo.github.io/sitemap.xml
