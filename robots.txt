@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /manage.html
+Disallow: /tools/
+Disallow: /supabase/
+Disallow: /cloud/
+# כשתהיה כתובת לאתר, תתווסף כאן שורת Sitemap

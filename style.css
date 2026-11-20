@@ -1,0 +1,391 @@
+/* תחנת כח לאמהות · אתי טולדו
+   כיוון: חם וחווייתי, בצבעי המותג. ארבעת צבעי הבסיס ניתנים לשינוי מאזור הניהול. */
+:root {
+  --ink: #17365D;      /* כחול נייבי – רקעים כהים וכותרות */
+  --blue: #5B6690;     /* אפור-לבנדר של העיגולים במיתוג */
+  --yellow: #D3468A;   /* ורוד פוקסיה – הדגשה ראשית וכפתורים */
+  --teal: #8A3F7C;     /* שזיף – טבעת סביב העיגול הוורוד, הדגשה משנית */
+
+  --pink: var(--yellow);
+  --pink-d: color-mix(in srgb, var(--yellow) 78%, #000);
+  --pink-l: color-mix(in srgb, var(--yellow) 82%, #fff);
+  --pink-soft: color-mix(in srgb, var(--yellow) 10%, #fff);
+  --plum: var(--teal);
+  --lav: var(--blue);
+  --lav-soft: color-mix(in srgb, var(--blue) 12%, #fff);
+  --cream: #F4ECDF;
+  --bg: #FFFDF9;
+  --text: #2E3440;
+  --muted: color-mix(in srgb, var(--ink) 62%, #fff);
+  --on-dark: color-mix(in srgb, var(--blue) 14%, #fff);
+  --line: color-mix(in srgb, var(--ink) 12%, #fff);
+
+  --font-head: "Rubik", "Heebo", system-ui, sans-serif;
+  --font-body: "Heebo", system-ui, sans-serif;
+
+  --r-card: 26px;
+  --r-box: 32px;
+  --shadow-card: 0 30px 70px -30px color-mix(in srgb, var(--ink) 38%, transparent);
+  --shadow-pop: 0 18px 40px -14px color-mix(in srgb, var(--ink) 45%, transparent);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); line-height: 1.12; margin: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul { margin: 0; padding: 0; list-style: none; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ico { width: 22px; height: 22px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 8px; }
+
+/* ---------- טיפוגרפיה של המותג ---------- */
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; letter-spacing: .02em; color: var(--pink-d); margin-bottom: 12px; }
+.eyebrow::before { content: ""; width: 22px; height: 3px; border-radius: 3px; background: currentColor; }
+.title { font-weight: 800; font-size: clamp(32px, 5vw, 54px); letter-spacing: -.5px; }
+.title em { font-style: normal; color: var(--pink); position: relative; white-space: nowrap; }
+.title--u::after { content: ""; display: block; width: 84px; height: 5px; border-radius: 5px; background: var(--pink); margin-top: 18px; }
+.center .title--u::after { margin-inline: auto; }
+.lead-p { font-size: clamp(17px, 2vw, 19px); color: var(--muted); max-width: 60ch; margin-top: 16px; }
+.center { text-align: center; }
+.center .lead-p { margin-inline: auto; }
+.head { margin-bottom: clamp(32px, 5vw, 52px); }
+.on-dark .title, .on-dark h3 { color: #fff; }
+.on-dark .eyebrow { color: var(--pink-l); }
+.on-dark .lead-p { color: var(--on-dark); }
+
+/* ---------- כפתורים ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 12px 26px; border-radius: 999px; border: 0;
+  font: 700 17px/1.2 var(--font-body); text-decoration: none; cursor: pointer;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background-color .25s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--pink { color: #fff; background: linear-gradient(135deg, var(--pink), var(--pink-d)); box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--pink) 55%, transparent); }
+.btn--ink { color: #fff; background: linear-gradient(135deg, color-mix(in srgb, var(--ink) 80%, var(--blue)), var(--ink)); box-shadow: var(--shadow-pop); }
+.btn--line { color: var(--ink); border: 2px solid color-mix(in srgb, var(--ink) 30%, #fff); background: #fff; }
+.btn--line:hover { border-color: var(--ink); }
+.btn--glass { color: #fff; border: 2px solid rgb(255 255 255 / .35); background: rgb(255 255 255 / .12); }
+.btn--wa { color: #fff; background: linear-gradient(135deg, #2BD46B, #179C4D); box-shadow: 0 10px 24px -8px rgb(23 156 77 / .6); }
+.btn--sm { min-height: 44px; padding: 8px 18px; font-size: 15px; }
+.btn--lg { min-height: 58px; padding: 14px 32px; font-size: 18px; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.center .btns { justify-content: center; }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--pink-d); text-decoration: none; }
+.link-arrow .ico { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+a:hover > .link-arrow .ico, .link-arrow:hover .ico { transform: translateX(-4px); }
+
+/* ---------- תפריט צף ---------- */
+.nav-wrap { position: fixed; top: 12px; inset-inline: 0; z-index: 50; transition: top .3s; }
+.nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: min(1240px, 100% - 24px); margin-inline: auto; padding: 8px 10px 8px 16px;
+  background: rgb(255 255 255 / .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px; box-shadow: 0 14px 40px -18px color-mix(in srgb, var(--ink) 50%, transparent);
+  border: 1px solid rgb(255 255 255 / .8);
+}
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo__img { height: 42px; width: auto; }
+.nav__links { display: none; }
+.nav__links a { text-decoration: none; font-weight: 600; font-size: 15.5px; color: var(--ink); padding: 8px 12px; border-radius: 999px; transition: background-color .2s; }
+.nav__links a:hover { background: var(--lav-soft); }
+.nav__actions { display: flex; align-items: center; gap: 8px; }
+.nav__wa { display: none; }
+.burger { width: 46px; height: 46px; border-radius: 50%; border: 0; display: grid; place-items: center; background: var(--ink); color: #fff; cursor: pointer; }
+.burger .ico { width: 22px; height: 22px; }
+.drawer {
+  position: fixed; inset: 0; z-index: 60; background: var(--ink); color: #fff;
+  display: flex; flex-direction: column; padding: 22px 20px 32px; overflow-y: auto;
+  transform: translateY(-100%); transition: transform .45s var(--ease); visibility: hidden;
+}
+.drawer.is-open { transform: none; visibility: visible; }
+.drawer__top { display: flex; justify-content: space-between; align-items: center; }
+.drawer__top img { height: 44px; width: auto; }
+.drawer__close { background: rgb(255 255 255 / .12); }
+.drawer nav { margin-top: 28px; display: grid; gap: 4px; }
+.drawer nav a { display: flex; justify-content: space-between; align-items: center; font: 700 22px/1.3 var(--font-head); text-decoration: none; padding: 14px 4px; border-bottom: 1px solid rgb(255 255 255 / .1); }
+.drawer nav a small { font: 400 14px var(--font-body); color: var(--on-dark); opacity: .8; }
+.drawer .btns { margin-top: auto; padding-top: 28px; }
+.drawer .btn { flex: 1 1 100%; }
+
+@media (min-width: 1080px) {
+  .nav { padding: 8px 10px 8px 22px; }
+  .nav__links { display: flex; gap: 2px; }
+  .nav__wa { display: inline-flex; }
+  .burger { display: none; }
+}
+
+/* ---------- שכבת עיטור: העיגולים של המותג ---------- */
+.dots { position: absolute; pointer-events: none; z-index: 0; }
+.circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+.circle--pink { background: var(--pink); }
+.circle--plum { background: var(--plum); }
+.circle--lav { background: var(--lav); opacity: .55; }
+.circle--ring { border: 2px dashed color-mix(in srgb, var(--pink) 45%, transparent); }
+.rel { position: relative; isolation: isolate; }
+
+/* השבשבת: האיור של המותג, מתנדנד ברוח */
+.pinwheel { position: absolute; pointer-events: none; z-index: 1; transform-origin: 47% 96%; animation: sway 7s ease-in-out infinite; filter: drop-shadow(0 24px 30px rgb(10 25 50 / .28)); }
+@keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+
+/* ---------- מעברים בצורת גל ---------- */
+.wave { display: block; width: 100%; height: clamp(40px, 6vw, 80px); color: var(--ink); }
+.wave--flip { transform: scaleY(-1); }
+.wave--cream { color: var(--cream); }
+.wave--pinksoft { color: var(--pink-soft); }
+
+/* ---------- מקטעים ---------- */
+.sec { padding-block: clamp(64px, 9vw, 120px); position: relative; }
+.sec--cream { background: var(--cream); }
+.sec--ink { background: var(--ink); color: var(--on-dark); }
+.sec--pinksoft { background: var(--pink-soft); }
+.sec--tight { padding-block: clamp(48px, 6vw, 80px); }
+
+/* ---------- סימון "להשלמה" ---------- */
+.todo {
+  display: inline-flex; align-items: center; gap: 8px; font: 700 13px/1.3 var(--font-body);
+  color: var(--plum); background: color-mix(in srgb, var(--plum) 10%, #fff);
+  border: 1.5px dashed color-mix(in srgb, var(--plum) 55%, #fff);
+  padding: 5px 12px; border-radius: 999px;
+}
+.on-dark .todo { color: #fff; background: rgb(255 255 255 / .1); border-color: rgb(255 255 255 / .4); }
+
+/* ---------- פתיחה (משותף) ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.photo-frame { position: relative; z-index: 2; }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.photo-note { position: absolute; z-index: 4; inset-inline-start: 50%; bottom: 14px; transform: translateX(50%); white-space: nowrap; }
+.chip {
+  position: absolute; z-index: 5; display: flex; align-items: center; gap: 10px;
+  background: #fff; color: var(--ink); border-radius: 18px; padding: 10px 14px;
+  font: 700 14px/1.3 var(--font-body); box-shadow: var(--shadow-pop); max-width: 230px;
+}
+.chip__ico { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none; color: #fff; background: var(--pink); }
+.chip__ico--ink { background: var(--ink); }
+.chip__ico .ico { width: 19px; height: 19px; }
+.ticks { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 26px; font-size: 15px; font-weight: 600; color: var(--muted); }
+.ticks li { display: flex; align-items: center; gap: 7px; }
+.ticks .ico { width: 18px; height: 18px; color: var(--pink); stroke-width: 2.4; }
+
+/* ---------- כרטיסי עולמות ---------- */
+.grid { display: grid; gap: 18px; }
+@media (min-width: 700px) { .grid--2 { grid-template-columns: repeat(2, 1fr); } .grid--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 700px) and (max-width: 999px) { .grid--4 { grid-template-columns: repeat(2, 1fr); } }
+
+.card {
+  position: relative; display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+  background: #fff; border-radius: var(--r-card); padding: 28px 26px 26px;
+  border: 1px solid var(--line); box-shadow: var(--shadow-card); text-decoration: none; color: inherit;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+a.card:hover { transform: translateY(-6px); box-shadow: 0 36px 70px -28px color-mix(in srgb, var(--ink) 50%, transparent); }
+.card h3 { font-size: 23px; font-weight: 700; }
+.card p { color: var(--muted); font-size: 16px; }
+.card .link-arrow { margin-top: auto; padding-top: 6px; }
+.card__ico { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--ink); }
+.card__ico .ico { width: 26px; height: 26px; }
+.card__ico--pink { background: var(--pink); }
+.card__ico--plum { background: var(--plum); }
+.card__ico--lav { background: var(--lav); }
+.card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 13px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: var(--lav-soft); color: var(--ink); }
+
+/* ---------- מרכז התוכן: שער ---------- */
+.search {
+  display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 999px;
+  padding: 8px 8px 8px 8px; padding-inline-start: 22px; box-shadow: var(--shadow-card); border: 1px solid var(--line);
+  max-width: 640px; margin-inline: auto;
+}
+.search .ico { color: var(--muted); }
+.search input { flex: 1; min-width: 0; border: 0; outline: 0; font: 500 17px var(--font-body); background: transparent; color: var(--ink); padding: 10px 0; }
+.search .btn { min-height: 46px; }
+.filters { margin-top: 34px; display: grid; gap: 22px; }
+.filters__label { font: 700 15px var(--font-body); color: var(--ink); margin-bottom: 10px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.center .pills { justify-content: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 42px; padding: 8px 16px; border-radius: 999px;
+  background: #fff; border: 1.5px solid var(--line); font: 600 15px var(--font-body); color: var(--ink); text-decoration: none;
+  transition: border-color .2s, background-color .2s, color .2s;
+}
+.pill:hover { border-color: var(--pink); color: var(--pink-d); }
+.pill--age { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pill--age:hover { background: var(--pink); border-color: var(--pink); color: #fff; }
+
+/* ---------- משפט טוב לדרך ---------- */
+.quote-card {
+  position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r-box);
+  background: var(--ink); color: #fff; padding: clamp(36px, 6vw, 64px); min-height: 340px;
+  box-shadow: var(--shadow-card);
+}
+.quote-card .curve-label { position: absolute; z-index: 3; }
+.quote-card blockquote { position: relative; z-index: 3; margin: 0; max-width: 560px; font: 500 clamp(22px, 3vw, 32px)/1.45 var(--font-head); }
+.quote-card blockquote strong { font-weight: 800; }
+.quote-card cite { position: relative; z-index: 3; display: block; margin-top: 20px; font-style: normal; font-weight: 600; color: var(--pink-l); }
+.quote-card cite::before { content: ""; display: block; width: 70px; height: 4px; border-radius: 4px; background: var(--pink); margin-bottom: 14px; }
+.quote-card .btns { position: relative; z-index: 3; }
+
+/* ---------- הורות במעגל השנה ---------- */
+.months { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); gap: 14px; overflow-x: auto; padding: 8px 4px 22px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.month {
+  scroll-snap-align: start; position: relative; border-radius: var(--r-card); padding: 24px 22px; min-height: 210px;
+  background: #fff; border: 1px solid var(--line); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px;
+  transition: transform .3s var(--ease), border-color .3s;
+}
+.month:hover { transform: translateY(-4px); border-color: var(--pink); }
+.month__name { font: 800 26px var(--font-head); color: var(--ink); }
+.month__dot { width: 12px; height: 12px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 6px var(--pink-soft); }
+.month:nth-child(3n+2) .month__dot { background: var(--plum); box-shadow: 0 0 0 6px color-mix(in srgb, var(--plum) 12%, #fff); }
+.month:nth-child(3n) .month__dot { background: var(--lav); box-shadow: 0 0 0 6px var(--lav-soft); }
+.month p { font-size: 15.5px; color: var(--muted); }
+.timeline-line { height: 2px; background: repeating-linear-gradient(90deg, var(--pink) 0 8px, transparent 8px 16px); opacity: .5; margin: 0 4px 6px; }
+
+/* ---------- פודקאסט ---------- */
+.pod { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 900px) { .pod { grid-template-columns: 1fr 1.1fr; } }
+.pod__art {
+  aspect-ratio: 1; max-width: 380px; width: 100%; margin-inline: auto; border-radius: var(--r-box); position: relative; overflow: hidden; isolation: isolate;
+  background: radial-gradient(circle at 70% 30%, var(--pink) 0 22%, transparent 22.5%), radial-gradient(circle at 70% 30%, var(--plum) 0 29%, transparent 29.5%), var(--ink);
+  display: grid; place-items: center; box-shadow: var(--shadow-card);
+}
+.pod__art .ico { width: 90px; height: 90px; color: #fff; stroke-width: 1.4; position: relative; z-index: 2; }
+.eq { display: flex; gap: 5px; align-items: flex-end; height: 34px; position: absolute; bottom: 30px; inset-inline-start: 30px; }
+.eq span { width: 6px; border-radius: 4px; background: var(--pink-l); animation: eq 1.2s ease-in-out infinite; }
+.eq span:nth-child(2) { animation-delay: .2s; } .eq span:nth-child(3) { animation-delay: .4s; } .eq span:nth-child(4) { animation-delay: .6s; }
+@keyframes eq { 0%, 100% { height: 8px; } 50% { height: 32px; } }
+
+/* ---------- קהילה ---------- */
+.community { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--r-box); background: linear-gradient(135deg, var(--pink), var(--pink-d)); color: #fff; padding: clamp(36px, 6vw, 70px); }
+.community .title { color: #fff; }
+.community .title em { color: var(--ink); }
+.community p { color: rgb(255 255 255 / .92); }
+.community__list { display: grid; gap: 10px 22px; margin-top: 24px; font-weight: 600; }
+@media (min-width: 640px) { .community__list { grid-template-columns: repeat(2, max-content); } }
+.community__list li { display: flex; align-items: center; gap: 8px; }
+.community__list .ico { width: 18px; height: 18px; stroke-width: 2.4; }
+.community .btn--ink { background: var(--ink); }
+.outline-text { position: absolute; z-index: -1; inset-inline-end: -20px; bottom: -40px; font: 900 clamp(110px, 18vw, 230px)/1 var(--font-head); color: transparent; -webkit-text-stroke: 2px rgb(255 255 255 / .2); white-space: nowrap; pointer-events: none; }
+
+/* ---------- יצירת קשר ---------- */
+.contact { display: grid; gap: 28px; }
+@media (min-width: 960px) { .contact { grid-template-columns: 1fr 1fr; align-items: start; } }
+.contact__ways { display: grid; gap: 12px; margin-top: 26px; }
+.way { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 20px; background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .12); text-decoration: none; color: #fff; transition: background-color .2s; }
+.way:hover { background: rgb(255 255 255 / .14); }
+.way__ico { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--pink); flex: none; }
+.way__ico--wa { background: #1FB25A; }
+.way__ico--lav { background: var(--lav); }
+.way small { display: block; font-size: 14px; color: var(--on-dark); opacity: .85; }
+.way strong { font-size: 18px; }
+.lead { background: #fff; color: var(--text); border-radius: var(--r-box); padding: clamp(26px, 4vw, 40px); box-shadow: 0 40px 80px -30px rgb(0 0 0 / .5); display: grid; gap: 14px; }
+.lead__title { font-size: 26px; font-weight: 700; }
+.lead__field { display: grid; gap: 6px; font-weight: 600; font-size: 15px; color: var(--ink); }
+.lead__field input, .lead__field select, .lead__field textarea { font: 500 17px var(--font-body); color: var(--ink); padding: 13px 16px; border-radius: 16px; border: 1.5px solid var(--line); background: #FBFAF7; width: 100%; }
+.lead__field textarea { min-height: 100px; resize: vertical; }
+.lead__field input:focus, .lead__field select:focus, .lead__field textarea:focus { outline: 0; border-color: var(--pink); background: #fff; }
+.lead__trap { position: absolute; inset-inline-start: -9999px; }
+.lead__msg { min-height: 1.4em; font-weight: 600; color: var(--ink); }
+.lead__msg--bad { color: #B3261E; }
+.lead__done { font: 700 20px var(--font-head); color: var(--ink); padding: 16px; border-radius: 18px; background: var(--pink-soft); }
+.lead__note { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- כותרת תחתונה ---------- */
+.footer { background: var(--ink); color: var(--on-dark); padding: 10px 0 30px; }
+.footer__grid { display: grid; gap: 30px; padding-block: 30px 40px; border-bottom: 1px solid rgb(255 255 255 / .12); }
+@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.3fr 1fr 1fr 1fr; } }
+.footer img { height: 54px; width: auto; }
+.footer h4 { color: #fff; font-size: 17px; margin-bottom: 12px; }
+.footer ul { display: grid; gap: 8px; }
+.footer a { text-decoration: none; opacity: .88; }
+.footer a:hover { opacity: 1; color: #fff; }
+.footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 22px; font-size: 14px; opacity: .8; }
+
+/* ---------- כפתור וואטסאפ צף ---------- */
+.wa-float { position: fixed; z-index: 40; bottom: 18px; left: 18px; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #2BD46B, #179C4D); box-shadow: 0 12px 26px -6px rgb(23 156 77 / .6); }
+.wa-float::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #2BD46B; animation: ring 2.4s ease-out infinite; }
+.wa-float .ico { width: 30px; height: 30px; }
+@keyframes ring { from { transform: scale(1); opacity: .7; } to { transform: scale(1.6); opacity: 0; } }
+
+/* ---------- בורר גרסאות (זמני, להשוואה) ---------- */
+.versions { position: fixed; z-index: 45; bottom: 18px; right: 50%; transform: translateX(50%); display: flex; gap: 4px; padding: 5px; border-radius: 999px; background: rgb(23 54 93 / .92); box-shadow: var(--shadow-pop); }
+.versions a { color: #fff; text-decoration: none; font: 700 14px var(--font-body); padding: 9px 16px; border-radius: 999px; white-space: nowrap; }
+.versions a[aria-current] { background: var(--pink); }
+@media (max-width: 600px) {
+  .versions { bottom: 88px; right: auto; left: 12px; transform: none; }
+  .versions a { font-size: 12.5px; padding: 8px 11px; }
+  .photo-note { font-size: 11.5px; padding: 4px 9px; }
+}
+
+/* ---------- כניסה עדינה בגלילה ---------- */
+.js .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in { opacity: 1; transform: none; }
+.js .rv-d1 { transition-delay: .08s; } .js .rv-d2 { transition-delay: .16s; } .js .rv-d3 { transition-delay: .24s; } .js .rv-d4 { transition-delay: .32s; } .js .rv-d5 { transition-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .js .rv { opacity: 1; transform: none; }
+}
+
+/* כשאזור הניהול פתוח במחשב */
+@media (min-width: 1000px) {
+  .adm-open .nav-wrap { left: 600px; }
+  .adm-open .nav__links, .adm-open .wa-float, .adm-open .versions { display: none; }
+}
+
+/* ===== נגישות ===== */
+.sr:focus { position: fixed; z-index: 100; top: 10px; inset-inline-start: 10px; width: auto; height: auto; clip: auto; padding: 10px 18px; background: var(--ink); color: #fff; border-radius: 12px; font-weight: 700; }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+.a11y__btn { position: fixed; z-index: 45; bottom: 88px; left: 22px; width: 52px; height: 52px; border-radius: 50%; border: 2px solid #fff; background: var(--ink); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 10px 24px -8px rgb(23 54 93 / .6); }
+.a11y__btn svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.a11y__btn svg circle { fill: currentColor; stroke: none; }
+.a11y__panel { position: fixed; z-index: 60; bottom: 150px; left: 16px; width: min(320px, calc(100vw - 32px)); max-height: calc(100vh - 170px); overflow: auto; background: #fff; color: var(--ink); border-radius: 22px; box-shadow: 0 30px 60px -20px rgb(0 0 0 / .45); border: 1px solid var(--line); padding: 16px; display: grid; gap: 12px; font: 600 15px var(--font-body); }
+.a11y__panel[hidden] { display: none; }
+.a11y__head { display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
+.a11y__close { background: none; border: 0; font-size: 18px; cursor: pointer; color: var(--ink); width: 36px; height: 36px; border-radius: 50%; }
+.a11y__size { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--cream); border-radius: 14px; padding: 8px 12px; }
+.a11y__size div { display: flex; gap: 6px; }
+.a11y__panel button { font: inherit; }
+.a11y__size button, .a11y__opts button, .a11y__reset { cursor: pointer; border: 1.5px solid var(--line); background: #fff; color: var(--ink); border-radius: 12px; padding: 9px 12px; min-height: 44px; }
+.a11y__size button { min-width: 48px; font-weight: 800; }
+.a11y__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.a11y__opts button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.a11y__reset { background: var(--pink-soft); }
+.a11y__link { text-align: center; color: var(--pink-d); font-weight: 700; }
+@media (max-width: 899px) { .a11y__btn { bottom: 86px; left: 22px; width: 48px; height: 48px; } }
+
+/* מצבי נגישות */
+html.a11y-t1 body { zoom: 1.12; }
+html.a11y-t2 body { zoom: 1.25; }
+html.a11y-t3 body { zoom: 1.4; }
+html.a11y-contrast body > *:not(.a11y) { filter: contrast(1.35); }
+html.a11y-mono body > *:not(.a11y) { filter: grayscale(1); }
+html.a11y-contrast.a11y-mono body > *:not(.a11y) { filter: grayscale(1) contrast(1.35); }
+html.a11y-contrast { --muted: #222; --on-dark: #fff; }
+html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; outline: 2px dashed currentColor; outline-offset: 2px; }
+html.a11y-font body, html.a11y-font body * { font-family: Arial, "Segoe UI", sans-serif !important; letter-spacing: .01em; }
+html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+html.a11y-still .rv { opacity: 1 !important; transform: none !important; translate: none !important; }
+
+/* אישור פרטיות בטופס */
+.lead__consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; line-height: 1.6; color: var(--text); cursor: pointer; }
+.lead__consent input { width: 20px; height: 20px; margin-top: 2px; flex: none; accent-color: var(--pink-d); }
+.lead__consent a { color: var(--pink-d); font-weight: 700; }
+
+/* המסך הראשון מופיע מיד, בלי לחכות לסקריפט (אנימציה קצרה ב-CSS בלבד) */
+@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.js main > section:first-child .rv { opacity: 1; transform: none; transition: none; animation: rise-in .55s var(--ease) both; }
+.js main > section:first-child .rv-d1 { animation-delay: .05s; }
+.js main > section:first-child .rv-d2 { animation-delay: .1s; }
+.js main > section:first-child .rv-d3 { animation-delay: .15s; }
+@media (prefers-reduced-motion: reduce) { .js main > section:first-child .rv { animation: none; } }
+.faq-link { color: var(--pink); font-weight: 700; white-space: nowrap; }

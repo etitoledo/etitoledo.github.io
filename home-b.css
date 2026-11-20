@@ -1,0 +1,222 @@
+/* גרסה ב: "תחנות הכוח שלי" במרכז */
+
+/* פתיחה כהה בכחול נייבי, כמו העיצובים לסטטוס */
+.hero-b { background: var(--ink); color: var(--on-dark); padding: 110px 0 0; }
+.hero-b__c0 { width: 560px; height: 560px; top: -240px; inset-inline-start: -200px; opacity: .22; }
+.hero-b__grid { display: grid; gap: 36px; align-items: center; position: relative; z-index: 1; padding-bottom: 150px; }
+.hero-b__title { font-weight: 900; font-size: clamp(46px, 8.4vw, 98px); line-height: 1; letter-spacing: -1.5px; color: #fff; }
+.hero-b__title em { font-style: normal; color: var(--pink); }
+.hero-b__sub { margin-top: 18px; font: 700 clamp(20px, 2.6vw, 27px)/1.35 var(--font-head); color: #fff; }
+.hero-b__sub::after { content: ""; display: block; width: 84px; height: 5px; border-radius: 5px; background: var(--pink); margin-top: 18px; }
+.hero-b .btns .btn--lg { min-height: 54px; padding-inline: 24px; }
+
+.hero-b__visual { position: relative; width: min(100%, 440px); margin-inline: auto; aspect-ratio: 1; }
+.hero-b__photo { position: absolute; inset: 8%; border-radius: 50%; overflow: hidden; border: 6px solid rgb(255 255 255 / .9); box-shadow: 0 40px 80px -30px rgb(0 0 0 / .6); }
+.hero-b__photo img { object-position: 50% 28%; }
+.hero-b__photo .photo-note { bottom: 9%; }
+.hero-b__c1 { width: 56%; aspect-ratio: 1; top: -4%; inset-inline-end: -8%; }
+.hero-b__c2 { width: 46%; aspect-ratio: 1; top: 1%; inset-inline-end: -3%; }
+.hero-b__pin { width: 40%; bottom: -12%; inset-inline-start: -10%; z-index: 3; }
+.hero-b__chip { bottom: 6%; inset-inline-end: -6%; }
+.hero-b__wave { position: absolute; bottom: -1px; left: 0; color: var(--bg); }
+
+@media (min-width: 960px) {
+  .hero-b { padding-top: 150px; }
+  .hero-b__grid { grid-template-columns: 1.15fr .85fr; gap: 60px; padding-bottom: 190px; }
+}
+@media (max-width: 520px) {
+  .hero-b .btns .btn { flex: 1 1 auto; }
+  .hero-b__chip { max-width: 180px; font-size: 13px; inset-inline-end: -2%; }
+  .hero-b__pin { inset-inline-start: -4%; width: 36%; }
+}
+
+/* תחנות הכוח: פאנל לבן שעולה על הפתיחה */
+.stations { position: relative; z-index: 3; margin-top: -120px; }
+.stations__panel { background: #fff; border-radius: var(--r-box); padding: clamp(30px, 5vw, 56px) clamp(18px, 4vw, 48px); box-shadow: var(--shadow-card); border: 1px solid var(--line); }
+.stations__panel .head { margin-bottom: 34px; }
+.stations__grid { display: grid; gap: 14px; }
+@media (min-width: 700px) { .stations__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .stations__grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+
+.station {
+  --c: var(--ink);
+  position: relative; overflow: hidden; display: flex; align-items: center; gap: 16px;
+  padding: 20px 20px 24px; border-radius: 24px; text-decoration: none; color: var(--ink);
+  background: color-mix(in srgb, var(--c) 6%, #fff); border: 1.5px solid color-mix(in srgb, var(--c) 16%, #fff);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
+}
+.station:hover, .station:focus-visible { transform: translateY(-5px); border-color: var(--c); box-shadow: 0 24px 44px -24px color-mix(in srgb, var(--c) 70%, transparent); }
+.station__ico { width: 62px; height: 62px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; background: var(--c); box-shadow: 0 0 0 7px color-mix(in srgb, var(--c) 14%, #fff); transition: transform .4s var(--ease); }
+.station:hover .station__ico { transform: rotate(-8deg) scale(1.05); }
+.station__ico .ico { width: 28px; height: 28px; }
+.station__txt { display: grid; gap: 2px; flex: 1; }
+.station__txt strong { font: 800 22px/1.2 var(--font-head); }
+.station__txt span { font-size: 15.5px; color: var(--muted); }
+.station__go { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; color: var(--c); background: #fff; border: 1.5px solid color-mix(in srgb, var(--c) 25%, #fff); transition: background-color .3s, color .3s; }
+.station:hover .station__go { background: var(--c); color: #fff; }
+.station__go .ico { width: 18px; height: 18px; }
+/* פס "טעינה" – רמז לתחנת כוח, מתמלא במעבר עכבר */
+.station__bar { position: absolute; bottom: 0; inset-inline: 0; height: 5px; background: color-mix(in srgb, var(--c) 14%, #fff); }
+.station__bar::after { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 22%; background: var(--c); border-radius: 0 5px 5px 0; transition: width .8s var(--ease); }
+.station:hover .station__bar::after, .station:focus-visible .station__bar::after { width: 100%; }
+@media (max-width: 520px) {
+  .stations__panel { padding-inline: 14px; }
+  .station { padding: 16px 14px 20px; gap: 14px; }
+  .station__ico { width: 52px; height: 52px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 14%, #fff); }
+  .station__ico .ico { width: 24px; height: 24px; }
+  .station__go { width: 34px; height: 34px; }
+  .station__txt strong { font-size: 20px; }
+}
+
+/* נעים להכיר */
+.about-b__grid { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 960px) { .about-b__grid { grid-template-columns: 1.1fr .9fr; gap: 60px; } }
+.about-b__facts { display: grid; gap: 12px; margin-top: 28px; }
+@media (min-width: 560px) { .about-b__facts { grid-template-columns: repeat(3, 1fr); } }
+.about-b__facts li { display: grid; gap: 2px; padding: 16px 18px; border-radius: 20px; background: var(--cream); }
+.about-b__facts strong { font: 800 21px/1.2 var(--font-head); color: var(--pink-d); }
+.about-b__facts span { font-size: 14.5px; color: var(--muted); }
+.quote-b__pin { width: clamp(120px, 16vw, 190px); bottom: -30px; inset-inline-end: 2%; }
+.about-b .quote-card { padding-bottom: 130px; }
+
+/* עולמות עם ספרה ענקית */
+.worlds-b__num { font: 900 54px/1 var(--font-head); color: var(--pink); opacity: .9; }
+
+/* פינות + פודקאסט */
+.corners-b { display: grid; gap: 18px; }
+@media (min-width: 900px) { .corners-b { grid-template-columns: 1fr 1fr 1.2fr; } }
+.corner__scribble { position: absolute; top: 18px; inset-inline-end: 16px; width: 120px; color: color-mix(in srgb, var(--lav) 45%, #fff); }
+.corners-b__pod { background: var(--ink); border-color: var(--ink); color: var(--on-dark); }
+.corners-b__pod h3 { color: #fff; }
+.corners-b__pod p { color: var(--on-dark); }
+.corners-b__pod .eyebrow { color: var(--pink-l); }
+.corners-b__pod .eq { bottom: auto; top: 30px; inset-inline-start: auto; inset-inline-end: 28px; }
+.corners-b__pod .todo { align-self: flex-start; }
+
+/* קהילה */
+.community__pin { width: clamp(140px, 20vw, 240px); bottom: -40px; inset-inline-end: 3%; }
+.community__body { position: relative; z-index: 2; max-width: 640px; }
+@media (max-width: 700px) { .community { padding-bottom: 150px; } .community__pin { width: 130px; inset-inline-end: 10px; } }
+
+/* פס הצטרפות לקהילה מתחת לתחנות */
+.comm-bar { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding: 16px 18px; border-radius: 24px; text-decoration: none; color: var(--ink); background: color-mix(in srgb, #1FB25A 9%, #fff); border: 1.5px solid color-mix(in srgb, #1FB25A 30%, #fff); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+.comm-bar:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -24px rgb(23 156 77 / .6); }
+.comm-bar__ico { width: 52px; height: 52px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #2BD46B, #179C4D); }
+.comm-bar__ico .ico { width: 26px; height: 26px; }
+.comm-bar__txt { display: grid; flex: 1; }
+.comm-bar__txt strong { font: 800 19px/1.25 var(--font-head); }
+.comm-bar__txt span { font-size: 15px; color: var(--muted); }
+@media (max-width: 560px) { .comm-bar { flex-wrap: wrap; } .comm-bar__btn { flex: 1 1 100%; } }
+.nav__comm { color: #179C4D !important; }
+
+/* המשפט המרכזי – נאמן לעיצוב המקורי של אתי */
+.about-b__single { max-width: 860px; }
+.mq { position: relative; isolation: isolate; overflow: hidden; margin: 0; border-radius: var(--r-box); background: var(--ink); color: #fff; box-shadow: var(--shadow-card); min-height: clamp(420px, 46vw, 560px); display: flex; align-items: center; }
+.mq__lav { width: 34%; aspect-ratio: 1; top: -24%; inset-inline-start: 34%; background: var(--lav); opacity: .55; }
+.mq__plum { width: 46%; aspect-ratio: 1; top: -22%; inset-inline-start: -12%; background: var(--plum); }
+.mq__pink { width: 40%; aspect-ratio: 1; top: -22%; inset-inline-start: -12%; background: var(--pink); }
+.mq__pin { width: clamp(220px, 34%, 420px); bottom: -18%; inset-inline-start: -7%; z-index: 2; transform-origin: 47% 96%; }
+.mq__body { position: relative; z-index: 3; width: 100%; padding: clamp(40px, 6vw, 72px); padding-inline-start: clamp(40px, 31%, 420px); }
+.mq__text { margin: 0; display: grid; gap: 4px; font: 400 clamp(26px, 3.3vw, 46px)/1.3 var(--font-body); }
+.mq__text strong { font-weight: 800; }
+.mq__by { margin-top: 26px; font: 400 clamp(22px, 2.4vw, 32px)/1.3 var(--font-body); }
+.mq__by::before { content: ""; display: block; width: clamp(140px, 22%, 230px); height: 6px; background: var(--pink); margin-bottom: 26px; }
+.mq__logo { width: clamp(110px, 13vw, 160px); height: auto; margin-top: 34px; }
+@media (max-width: 760px) {
+  .mq { display: block; min-height: 0; }
+  .mq__body { padding: 40px 18px 210px; }
+  .mq__text { font-size: clamp(18px, 5.3vw, 24px); letter-spacing: -.2px; }
+  .mq__text > * { text-wrap: balance; }
+  .mq__lav { width: 60%; top: -14%; inset-inline-start: 30%; }
+  .mq__plum { width: 64%; top: auto; bottom: -12%; inset-inline-start: -22%; }
+  .mq__pink { width: 54%; top: auto; bottom: -6%; inset-inline-start: -16%; }
+  .mq__pin { width: 210px; bottom: -40px; inset-inline-start: -10px; }
+  .mq__logo { position: absolute; bottom: 28px; inset-inline-end: 24px; margin: 0; }
+}
+
+/* המוטו: גדול ומשמעותי יותר, החתימה בצד שמאל */
+.mq { min-height: clamp(460px, 52vw, 640px); }
+.mq__text { font-size: clamp(30px, 4.1vw, 60px); line-height: 1.28; }
+.mq__body { padding-inline-start: clamp(40px, 29%, 400px); }
+.mq__by { text-align: end; }
+.mq__by::before { margin-inline-start: auto; }
+.mq__logo { margin-inline-start: auto; }
+@media (max-width: 760px) {
+  .mq__text { font-size: clamp(18px, 5.3vw, 24px); }
+  .mq__logo { inset-inline-end: auto; inset-inline-start: auto; left: 24px; }
+}
+/* פסקת האמונה בנעים להכיר */
+.about-b__belief { margin-top: 18px; padding: 16px 20px; border-inline-start: 5px solid var(--pink); background: var(--pink-soft); border-radius: 18px; border-start-start-radius: 0; border-end-start-radius: 0; font: 700 clamp(18px, 2.1vw, 21px)/1.6 var(--font-head); color: var(--ink); max-width: 60ch; }
+@media (min-width: 761px) {
+  .mq__body { padding-inline-start: clamp(40px, 27%, 380px); }
+  .mq__text { font-size: clamp(28px, 3.3vw, 50px); }
+  .mq__text > * { white-space: nowrap; }
+}
+@media (max-width: 760px) {
+  .mq__body { padding: 40px 20px 210px; }
+  .mq__text { font-size: clamp(18px, 5.4vw, 24px); }
+}
+
+/* המלצות: כרטיסי פסטל מוטים קלות, גלילה לצדדים */
+.tms-sec { background: linear-gradient(180deg, var(--bg) 0%, var(--cream) 100%); }
+.tms { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(270px, 340px); gap: 20px; overflow-x: auto; padding: 18px 6px 28px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.tm { scroll-snap-align: center; margin: 0; position: relative; background: var(--bg); border-radius: 26px; padding: 30px 24px 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 22px 44px -26px color-mix(in srgb, var(--ink) 45%, transparent); transition: transform .35s var(--ease); }
+.tm:nth-child(odd) { rotate: -1.2deg; }
+.tm:nth-child(even) { rotate: 1deg; translate: 0 10px; }
+.tm:hover { rotate: 0deg; translate: 0 -4px; }
+.tm__q { width: 34px; height: 34px; color: var(--pink); fill: none; stroke: currentColor; stroke-width: 1.6; }
+.tm blockquote { margin: 0; font-size: 16.5px; line-height: 1.75; color: var(--ink); flex: 1; }
+.tm figcaption { display: flex; align-items: center; gap: 10px; font: 700 17px var(--font-head); color: var(--ink); }
+.tm__av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-size: 17px; }
+.tms__hint { text-align: center; font-size: 14px; color: var(--muted); margin-top: 4px; }
+@media (min-width: 1100px) { .tms__hint { display: none; } }
+
+/* הפודקאסט: שלושה רילסים לאורך */
+.pod-sec { overflow: hidden; }
+.reels { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 300px); gap: 18px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory; justify-content: start; }
+@media (min-width: 1000px) { .reels { justify-content: center; } }
+.reel { margin: 0; scroll-snap-align: center; border-radius: 26px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; border: 4px solid rgb(255 255 255 / .9); box-shadow: 0 30px 60px -28px rgb(0 0 0 / .7); }
+.reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
+a.corners-b__pod { text-decoration: none; }
+
+/* נעים להכיר – הסיפור של אתי */
+.about-story { display: grid; gap: 14px; margin-top: 22px; max-width: 66ch; font-size: clamp(17px, 1.9vw, 19px); line-height: 1.8; color: var(--text); }
+.about-story p { margin: 0; text-wrap: pretty; }
+.about-story strong { color: var(--pink-d); font-weight: 700; }
+.about-story__lead { font: 700 clamp(19px, 2.3vw, 23px)/1.5 var(--font-head); color: var(--ink); }
+.about-story .about-b__belief { margin: 6px 0; }
+.about-story__close { font: 800 clamp(19px, 2.3vw, 23px)/1.5 var(--font-head); color: var(--ink); padding-top: 6px; }
+.about-story__close::after { content: ""; display: block; width: 70px; height: 4px; border-radius: 4px; background: var(--pink); margin-top: 14px; }
+.pod-name { font-size: clamp(30px, 4.6vw, 52px); max-width: 18ch; }
+
+/* השבשבת שלמה בכל מקום – לא נחתכת בקצה המסגרת */
+.mq__pin { width: clamp(180px, 27%, 330px); bottom: 4%; inset-inline-start: 3%; }
+.community__pin { bottom: 14px; }
+.quote-b__pin { bottom: 10px; }
+.hero-b__pin { bottom: -4%; inset-inline-start: -6%; }
+@media (max-width: 760px) {
+  .mq__pin { width: 170px; bottom: 12px; inset-inline-start: 10px; }
+  .community__pin { bottom: 12px; }
+}
+
+/* דף הבית – מקוצר */
+.corners-b--two { grid-template-columns: 1fr; }
+@media (min-width: 760px) { .corners-b--two { grid-template-columns: 1fr 1fr; } }
+.pill--all { background: var(--pink); color: #fff; border-color: var(--pink); }
+.pill--all:hover { background: var(--pink-d); color: #fff; }
+.special { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding: 20px 22px; border-radius: 24px; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--plum), var(--ink)); box-shadow: var(--shadow-card); transition: transform .3s var(--ease); }
+.special:hover { transform: translateY(-3px); }
+.special__ico { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--pink); flex: none; }
+.special__txt { display: grid; gap: 4px; flex: 1; }
+.special__txt strong { font: 800 clamp(19px, 2.2vw, 23px)/1.3 var(--font-head); }
+.special__txt span { color: var(--on-dark); }
+.special__go { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid rgb(255 255 255 / .4); flex: none; }
+/* בטלפון: כרטיסים בפס גלילה לצדדים כדי לקצר את הדף */
+@media (max-width: 699px) {
+  .home-latest, .worlds-b, .corners-b--two { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding: 4px 4px 14px; }
+  .home-latest > *, .worlds-b > *, .corners-b--two > * { scroll-snap-align: center; }
+  .about-b__facts { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .about-b__facts li { padding: 12px 10px; }
+  .about-b__facts strong { font-size: 16px; }
+  .about-b__facts span { font-size: 12.5px; }
+}
