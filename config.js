@@ -6,5 +6,7 @@ window.SITE_CONFIG = {
   supabaseUrl: '',
   supabaseKey: '',
   // כתובת ה-Worker של Cloudflare שמעלה ומגיש את הסרטונים (cloud/media-worker.js)
-  mediaWorker: ''
+  mediaWorker: '',
+  // מספר המעקב של Google Analytics (מתחיל ב-GTM- או ב-G-). ריק = לא סופרים כניסות.
+  gaId: 'GTM-K9X33M5T'
 };
