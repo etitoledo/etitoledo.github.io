@@ -1,5 +1,7 @@
 // הכי חם עכשיו + חלון קופץ בכניסה
 (() => {
+  const isOn = key => (document.querySelector(`[data-edit="${key}"]`)?.textContent || 'פועל').trim() !== 'כבוי';
+  window.__etiIsOn = isOn;
   const load = v => { if (v && !v.src && v.dataset.src) v.src = v.dataset.src; };
 
   // הרילס בכרטיס הפודקאסט מתנגן בלי קול רק כשרואים אותו
@@ -23,6 +25,7 @@
   const markSeen = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch {} };
 
   const open = () => {
+    if (!isOn('pop.on') && !forced) return;
     lastFocus = document.activeElement;
     pop.hidden = false;
     requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add('is-open')));
@@ -65,7 +68,7 @@
   let podVisible = false;
 
   const update = () => {
-    const show = scrollY > innerHeight * 0.6 && !podVisible && (!pop || pop.hidden);
+    const show = (window.__etiIsOn ? window.__etiIsOn('bub.on') : true) && scrollY > innerHeight * 0.6 && !podVisible && (!pop || pop.hidden);
     bub.classList.toggle('is-on', show);
     if (show) { if (!vid.src) vid.src = vid.dataset.src; vid.play().catch(() => {}); } else vid.pause();
   };

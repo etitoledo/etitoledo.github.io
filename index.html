@@ -31,7 +31,7 @@
   <script src="content-store.js?v=2611321" defer></script>
   <script src="content-ui.js?v=2611301" defer></script>
   <script src="home-content.js?v=2611351" defer></script>
-  <script src="promo.js?v=2611242" defer></script>
+  <script src="promo.js?v=2611243" defer></script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "#eti", "name": "אתי טולדו", "alternateName": ["Eti Toledo", "אתי טולדו – תחנת כח לאמהות"], "jobTitle": "מנחת הורים, מרצה ואשת חינוך", "image": "https://etitoledo.co.il/assets/eti.jpg", "telephone": "+972504157979", "knowsAbout": ["הדרכת הורים", "הורות", "חינוך בגיל הרך", "גבולות וסמכות הורית", "הורים לילדים עם צרכים מיוחדים"]}, {"@type": "ProfessionalService", "name": "תחנת כח לאמהות – אתי טולדו", "description": "הדרכת הורים, הרצאות וסדנאות לאמהות, לקהילות ולצוותי חינוך", "telephone": "+972504157979", "image": "https://etitoledo.co.il/assets/share.jpg", "founder": {"@id": "#eti"}, "areaServed": ["נתניה", "ישראל"], "address": {"@type": "PostalAddress", "addressLocality": "נתניה", "addressCountry": "IL"}}, {"@type": "WebSite", "name": "אתי טולדו – תחנת כח לאמהות", "alternateName": "אתי טולדו", "inLanguage": "he", "url": "https://etitoledo.co.il/"}]}
   </script>
@@ -100,7 +100,7 @@
     <a href="workshops.html">סדנאות והרצאות <small>תהליכיות וחד־פעמיות</small></a>
     <a href="content.html">מרכז התוכן <small>סרטונים, מאמרים, כלים</small></a>
     <a href="#corners">הפינות שלי <small>משפט, ציור, מהלב</small></a>
-    <a href="#podcast">הפודקאסט <small>בקרוב</small></a>
+    <a href="#podcast">הפודקאסט <small>חדש · קטעים מהפרקים</small></a>
     <a href="#contact">צרי קשר <small>טלפון, וואטסאפ, מייל</small></a>
     <a href="https://chat.whatsapp.com/KLcxTEYWqjWKX0vAD19I10" target="_blank" rel="noopener">הקהילה בוואטסאפ <small>להצטרפות</small></a>
   </nav>
@@ -503,6 +503,7 @@
 
 <!-- ===== חלון קופץ בכניסה ===== -->
 <div class="pop" id="welcome-pop" role="dialog" aria-modal="true" aria-labelledby="pop-title" hidden data-section="חלון קופץ בכניסה">
+  <span hidden data-edit="pop.on" data-type="switch" data-label="להציג את החלון הקופץ בכניסה?">פועל</span>
   <div class="pop__backdrop" data-pop-close></div>
   <div class="pop__box">
     <button class="pop__x" type="button" data-pop-close><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><span class="sr">סגירה</span></button>
@@ -529,6 +530,7 @@
 
 <!-- ===== בועת וידאו צפה לפודקאסט ===== -->
 <div class="bub" id="pod-bubble" hidden data-section="בועת הפודקאסט הצפה">
+  <span hidden data-edit="bub.on" data-type="switch" data-label="להציג את בועת הפודקאסט?">פועל</span>
   <a class="bub__link" href="#podcast" aria-label="לקטעים מהפודקאסט">
     <span class="bub__ring"><video muted loop playsinline preload="none" poster="assets/podcast/reel-1.jpg" data-src="assets/podcast/reel-1.mp4" aria-hidden="true"></video></span>
     <span class="bub__label"><svg class="ico" aria-hidden="true"><use href="#i-headphones"/></svg><span data-edit="bub.label" data-label="תווית הבועה">הפודקאסט</span></span>
