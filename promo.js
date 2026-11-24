@@ -73,7 +73,13 @@
     if (show) { if (!vid.src) vid.src = vid.dataset.src; vid.play().catch(() => {}); } else vid.pause();
   };
   if (podSec && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => { podVisible = e.isIntersecting; update(); }, { threshold: .15 }).observe(podSec);
+    // לא מציגים את הבועה כשאחד ממקומות הפודקאסט כבר על המסך
+    const seen = new Map();
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => seen.set(e.target, e.isIntersecting));
+      podVisible = [...seen.values()].some(Boolean); update();
+    }, { threshold: .15 });
+    [podSec, document.querySelector('.hot-card--pod')].filter(Boolean).forEach(el => io.observe(el));
   }
   if (pop) new MutationObserver(update).observe(pop, { attributes: true, attributeFilter: ['hidden'] });
   addEventListener('scroll', update, { passive: true });

@@ -105,3 +105,9 @@
   .bub__label { font-size: 12.5px; padding: 3px 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .bub { transition: none; } .bub__ring::after { animation: none; } }
+
+/* הפס עולה על הפתיחה, ותחנות הכח באות אחריו */
+.hot { position: relative; z-index: 3; margin-top: -120px; }
+.hot__panel { background: #fff; border-radius: var(--r-box); padding: clamp(30px, 5vw, 56px) clamp(16px, 4vw, 48px); box-shadow: var(--shadow-card); border: 1px solid var(--line); }
+.hot + .stations { margin-top: clamp(28px, 5vw, 56px); }
+@media (max-width: 560px) { .hot__panel { padding-inline: 12px; } .hot-card { padding: 22px 18px; } }
