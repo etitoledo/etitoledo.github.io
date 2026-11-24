@@ -4,4 +4,4 @@ Disallow: /manage.html
 Disallow: /tools/
 Disallow: /supabase/
 Disallow: /cloud/
-Sitemap: https://etitoledo.github.io/sitemap.xml
+Sitemap: https://etitoledo.co.il/sitemap.xml
